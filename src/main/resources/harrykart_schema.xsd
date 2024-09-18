@@ -1,0 +1,61 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="harryKart">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="loopType" name="numberOfLoops"/>
+        <xs:element name="startList">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="participant" maxOccurs="unbounded" minOccurs="4">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="laneType" name="lane"/>
+                    <xs:element type="xs:string" name="name"/>
+                    <xs:element type="baseSpeedType" name="baseSpeed"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="powerUps">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="loop" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="lane" maxOccurs="unbounded" minOccurs="4">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:short">
+                            <xs:attribute type="laneType" name="number" use="required"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute type="laneType" name="number" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="laneType">
+    <xs:restriction base="xs:byte">
+      <xs:minInclusive value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="loopType">
+    <xs:restriction base="xs:byte">
+      <xs:minInclusive value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="baseSpeedType">
+    <xs:restriction base="xs:byte">
+      <xs:minInclusive value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
